@@ -1,39 +1,75 @@
-let employees = [ {
+const employees = [ {
   first: '',
   last: '',
-  id: 0,
+  id: '',
   title: '',
-  salary: 0
+  salary: ''
 }
 ];
 
 function onReady() {
   $('#addEmployeeInfo').on('click', function(event) {
-      let first = ("#first-name").valueOf();
-      let last = ("#last-name").valueOf();
-      let id = ("ID-number").valueOf();
-      let title = ("#job-title").valueOf();  
-      let salary = ("#anuual-salary").valueOf();
+      const first = $("#first-name").val();
+      const last = $("#last-name").val();
+      const id = $("#ID-number").val();
+      const title = $("#job-title").val();  
+      const salary = $("#annual-salary").val();
 
-      appendEmployee(first, last, id, title, salary);
-  });
+      showEmployee(first, last, id, title, salary);
+  });git status
 
   $('#employee-table').empty();
 
-  for (let i =0; i < employees.length; i++) {
-    appendEmployee(employees[i].first, employees[i].last, employees[i].id, 
+  for (let i = 0; i < employees.length; i++) {
+    showEmployee(employees[i].first, employees[i].last, employees[i].id, 
       employees[i].title, employees[i].salary);
   }
 
 
   $('#employee-table').on('click', 'btn-remove', function(event) {
     let buttonSubmit = $(event.target);
-    buttonSubmit.closest('tr').remove();
+    buttonSubmit.closest('tbody').remove();
   });
 
 }
 
-function 
+function showEmployee(first, last, id, title, salary) {
+   
+  $('#employee-table').append(`
+
+    <tbody>
+      <tr>
+        <td>First Name</td>
+        <td>${first}</td>
+      </tr>
+      <tr>
+        <td>Last Name</td>
+        <td>${last}</td>
+      </tr>
+      <tr>
+        <td>ID Number</td>
+        <td>${id}</td>
+      </tr>
+      <tr>
+        <td>Job Title</td>
+        <td>${title}</td>
+      </tr>
+      <tr>
+        <td>Annual Salary</td>
+        <td>${salary}</td>
+      </tr>
+      <tr>
+        <td colspan="2">
+            <button class="btn-remove">Delete</button>
+        </td> 
+      </tr>
+    </tbody>
+
+
+  `);
+}
+
+$(onReady);
 
 /*remove for other code 
 function newEmployees(firstName, lastName, idNumber, jobTitle, annualSalary) {
