@@ -1,9 +1,9 @@
-const employees = [ {
+let employees = [ {
   first: 'Matt',
   last: 'Sharp',
-  id: '#1',
-  title: 'The Best',
-  salary: '$80,000'
+  id: '',
+  title: 'title',
+  salary: 80000
 }
 ];
 
@@ -31,10 +31,7 @@ function onReady() {
     showEmployee(employees[i].first, employees[i].last, employees[i].id, 
       employees[i].title, employees[i].salary);
   }
-
-
-  
-
+ 
 }
 
 function showEmployee(first, last, id, title, salary) {
@@ -42,38 +39,65 @@ function showEmployee(first, last, id, title, salary) {
   $('#employee-table').append(`
   
     
-      <tr>
-        <th>First Name</th>
-        <th>Last Name</th>
-        <th>ID Number</th>
-        <th>Job Title</th>
-        <th>Annual Salary</th>
-        <th></th>
-      </tr>
+      
       <tr>
         <td>${first}</td>
         <td>${last}</td>
         <td>${id}</td>
         <td>${title}</td>
-        <td>${salary}</td>
+        <td>$ ${salary}</td>
         <td>
             <button id="buttonDelete" class="btn-remove">Delete</button>
         </td> 
       </tr>
       
-   
-
-
   `);
 
-  $('.btn-remove').on('click', function(event) {
+  $('#employee-table').on('click', '.btn-remove', function(event) {
     let buttonSubmit = $(event.target);
     buttonSubmit.closest('tr').remove();
-    $('#employee-table').empty('tr');
+   
   });
+  
+}
+console.log(totalMonthlySalary());
+$(onReady);
+
+function totalMonthlySalary() {
+let monthly = 0;
+  for (let i = 0; i < employees.length; i++) {
+    monthly += Number(employees[i].salary) / 12;
+
+  }
+  console.log(Math.round(monthly));
+  let total = $('#displayTotal');
+  total.empty();
+  total.append('$', Math.round(monthly));
+  console.log(employees);
+  
 }
 
-$(onReady);
+//add all salarys inputs into a variable and then devide that variable by 12
+/*
+function addSalarys() {
+  let displayMonthly = 0;
+
+  $('#addEmployeeInfo').on('click', function() {
+    $('#monthly-salary').append(`<span></span>`);
+    displayMonthly++;
+    $('#display-monthly').text(displayMonthly);
+    console.log('This is th Monthly Salary:', displayMonthly);
+  });
+
+  
+}
+ */
+//(for 12 months in a year)to get the total monthly salary of all employees inputs on the dom.
+//display that total monthly salary on the dom in the div that I made in html.
+//for base mode we dont need to subtract the deleted salarys from the total monthly salary.
+
+
+
 /*
 function totalMonthly() {
   let monthlySalary = [];
@@ -96,46 +120,4 @@ function newEmployees(firstName, lastName, idNumber, jobTitle, annualSalary) {
   garage.push(newEmployObj);
   return true;
 }
-
-function addEmployees() {
-    console.log('in addEmployees');
-
-    let newEmployee = {
-        firstName: $('#first-name'),
-        lastName: $('#last-name'),
-        idNumber: $('#ID-number'),
-        jobTitle: $('#job-title'),
-        annualSalary: $('#annual-salary')
-
-    };
-
-    employees.push(newEmployee);
-
-    $('#first-name').val("");
-    $('#last-name').val("");
-    $('#ID-number').val("");
-    $('#job-title').val("");
-    $('#annual-salary').val("");
-}
-
-
-$(document).ready(submit);
-function submit() {
-    $('#addEmployeeInfo').on('click', addEmployees);
-    console.log(employees);
-}
-
-
-
-/*function newCar$('#first-name',){
-  console.log('Employee:', first-name);
-  const employeeObj = {
-    firstName: $('#first-name'),
-    lastName: $('#last-name'),
-    idNumber: $('#ID-number'),
-    jobTitle: $('#job-title'),
-    annualSalary: $('#annual-salary'),
-  }
-  employee.push(employeeObj);
-  return true;
-}*/
+*/
