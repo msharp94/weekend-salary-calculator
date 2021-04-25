@@ -1,9 +1,9 @@
 const employees = [ {
-  first: '',
-  last: '',
-  id: '',
-  title: '',
-  salary: ''
+  first: 'Matt',
+  last: 'Sharp',
+  id: '#1',
+  title: 'The Best',
+  salary: '$80,000'
 }
 ];
 
@@ -16,7 +16,14 @@ function onReady() {
       const salary = $("#annual-salary").val();
 
       showEmployee(first, last, id, title, salary);
-  });git status
+
+      $("#first-name").val("");
+      $("#last-name").val("")
+      $("#ID-number").val("");
+      $("#job-title").val("");
+      $("#annual-salary").val("");
+
+  });
 
   $('#employee-table').empty();
 
@@ -26,51 +33,56 @@ function onReady() {
   }
 
 
-  $('#employee-table').on('click', 'btn-remove', function(event) {
-    let buttonSubmit = $(event.target);
-    buttonSubmit.closest('tbody').remove();
-  });
+  
 
 }
 
 function showEmployee(first, last, id, title, salary) {
-   
+  
   $('#employee-table').append(`
-
-    <tbody>
+  
+    
       <tr>
-        <td>First Name</td>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>ID Number</th>
+        <th>Job Title</th>
+        <th>Annual Salary</th>
+        <th></th>
+      </tr>
+      <tr>
         <td>${first}</td>
-      </tr>
-      <tr>
-        <td>Last Name</td>
         <td>${last}</td>
-      </tr>
-      <tr>
-        <td>ID Number</td>
         <td>${id}</td>
-      </tr>
-      <tr>
-        <td>Job Title</td>
         <td>${title}</td>
-      </tr>
-      <tr>
-        <td>Annual Salary</td>
         <td>${salary}</td>
-      </tr>
-      <tr>
-        <td colspan="2">
-            <button class="btn-remove">Delete</button>
+        <td>
+            <button id="buttonDelete" class="btn-remove">Delete</button>
         </td> 
       </tr>
-    </tbody>
+      
+   
 
 
   `);
+
+  $('.btn-remove').on('click', function(event) {
+    let buttonSubmit = $(event.target);
+    buttonSubmit.closest('tr').remove();
+    $('#employee-table').empty('tr');
+  });
 }
 
 $(onReady);
-
+/*
+function totalMonthly() {
+  let monthlySalary = [];
+  for (let salary of employees) {
+    salary = $('#annual-salary')
+  }
+  if( salary)
+}
+*/
 /*remove for other code 
 function newEmployees(firstName, lastName, idNumber, jobTitle, annualSalary) {
   console.log('in newEmployees:',  firstName, lastName, idNumber, jobTitle, annualSalary);
