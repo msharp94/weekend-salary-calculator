@@ -23,6 +23,14 @@ function onReady() {
       $("#job-title").val("");
       $("#annual-salary").val("");
 
+      employees.push({
+        first: first,
+        last: last,
+        id: id,
+        title: title,
+        salary: salary,
+      });
+
   });
 
   $('#employee-table').empty();
@@ -58,9 +66,9 @@ function showEmployee(first, last, id, title, salary) {
     buttonSubmit.closest('tr').remove();
    
   });
-  
+  totalMonthlySalary();
 }
-console.log(totalMonthlySalary());
+
 $(onReady);
 
 function totalMonthlySalary() {
