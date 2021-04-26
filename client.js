@@ -1,6 +1,7 @@
 let employees = [];
-
+//make a globe variable 
 function onReady() {
+  //create a function that on the click it enters and removes the values inputed 
   $('#addEmployeeInfo').on('click', function() {
       const first = $("#first-name").val();
       const last = $("#last-name").val();
@@ -15,7 +16,7 @@ function onReady() {
       $("#ID-number").val("");
       $("#job-title").val("");
       $("#annual-salary").val("");
-
+      //empty the values after button click
       
 
   });
@@ -30,7 +31,7 @@ function onReady() {
 }
 
 function showEmployee(first, last, id, title, salary) {
-
+//create a function that pushs the values inputed into the array 
   employees.push({
         first: first,
         last: last,
@@ -39,7 +40,7 @@ function showEmployee(first, last, id, title, salary) {
         salary: salary,
       });
 
-  
+  //inside the function append the values inputed to the DOM and make a delete button for every row 
   $('#employee-table').append(`
   
     
@@ -56,7 +57,9 @@ function showEmployee(first, last, id, title, salary) {
       </tr>
       
   `);
-
+//grab the table and event.target the click selected by class button and 
+//remove the tr which would be the employee array on the row of clicked button 
+//and not the whole table for every button made
   $('#employee-table').on('click', '.btn-remove', function(event) {
     let buttonSubmit = $(event.target);
     buttonSubmit.closest('tr').remove();
@@ -66,9 +69,11 @@ function showEmployee(first, last, id, title, salary) {
 }
 
 
-
+//create a function that sets a global variable to 0 
 function totalMonthlySalary() {
 let monthly = 0;
+//loop through the array and grab the employees salary and divide it by 12
+//then set variable to the value of divided number at the index 
   for (let i = 0; i < employees.length; i++) {
     monthly += Number(employees[i].salary) / 12;
     
@@ -77,9 +82,10 @@ let monthly = 0;
   console.log(Math.round(monthly));
   
   $('#displayTotal').toggleClass("red", monthly > 20000);
-//another way to toggle the class when a condistion is meet git 
+//another way to toggle the class when a condistion is meet
 
-
+// make a variable and set it to the id of my display table 
+//empty the total then append and round the monthly variable 
   let total = $('#displayTotal');
   total.empty();
   total.append('$', Math.round(monthly));
