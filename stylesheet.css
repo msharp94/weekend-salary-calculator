@@ -49,3 +49,7 @@ input {
 h3 {
   text-align: center;
 }
+
+.red {
+  background-color: red;
+}

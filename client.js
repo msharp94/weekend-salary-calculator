@@ -65,21 +65,29 @@ function showEmployee(first, last, id, title, salary) {
   totalMonthlySalary();
 }
 
-$(onReady);
+
 
 function totalMonthlySalary() {
 let monthly = 0;
   for (let i = 0; i < employees.length; i++) {
     monthly += Number(employees[i].salary) / 12;
-
+    
   }
+
   console.log(Math.round(monthly));
+  
+  $('#displayTotal').toggleClass("red", monthly > 20000);
+//another way to toggle the class when a condistion is meet git 
+
+
   let total = $('#displayTotal');
   total.empty();
   total.append('$', Math.round(monthly));
   console.log(employees);
   
 }
+
+
 
 //add all salarys inputs into a variable and then devide that variable by 12
 //(for 12 months in a year)to get the total monthly salary of all employees inputs on the dom.
@@ -111,3 +119,4 @@ function newEmployees(firstName, lastName, idNumber, jobTitle, annualSalary) {
   return true;
 }
 */
+$(onReady);
