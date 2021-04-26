@@ -1,14 +1,7 @@
-let employees = [ {
-  first: 'Matt',
-  last: 'Sharp',
-  id: '',
-  title: 'title',
-  salary: 80000
-}
-];
+let employees = [];
 
 function onReady() {
-  $('#addEmployeeInfo').on('click', function(event) {
+  $('#addEmployeeInfo').on('click', function() {
       const first = $("#first-name").val();
       const last = $("#last-name").val();
       const id = $("#ID-number").val();
@@ -23,13 +16,7 @@ function onReady() {
       $("#job-title").val("");
       $("#annual-salary").val("");
 
-      employees.push({
-        first: first,
-        last: last,
-        id: id,
-        title: title,
-        salary: salary,
-      });
+      
 
   });
 
@@ -43,6 +30,15 @@ function onReady() {
 }
 
 function showEmployee(first, last, id, title, salary) {
+
+  employees.push({
+        first: first,
+        last: last,
+        id: id,
+        title: title,
+        salary: salary,
+      });
+
   
   $('#employee-table').append(`
   
@@ -86,20 +82,6 @@ let monthly = 0;
 }
 
 //add all salarys inputs into a variable and then devide that variable by 12
-/*
-function addSalarys() {
-  let displayMonthly = 0;
-
-  $('#addEmployeeInfo').on('click', function() {
-    $('#monthly-salary').append(`<span></span>`);
-    displayMonthly++;
-    $('#display-monthly').text(displayMonthly);
-    console.log('This is th Monthly Salary:', displayMonthly);
-  });
-
-  
-}
- */
 //(for 12 months in a year)to get the total monthly salary of all employees inputs on the dom.
 //display that total monthly salary on the dom in the div that I made in html.
 //for base mode we dont need to subtract the deleted salarys from the total monthly salary.
